@@ -1,0 +1,5 @@
+# Logs
+.k6/
+
+# macOS
+.DS_Store

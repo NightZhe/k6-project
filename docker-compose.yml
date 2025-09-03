@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  influxdb:
+    image: influxdb:1.8
+    container_name: k6-influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      - INFLUXDB_DB=k6
+      - INFLUXDB_HTTP_AUTH_ENABLED=false
+    volumes:
+      - influxdb-data:/var/lib/influxdb
+  # influxdb:
+  #   image: influxdb:2.7
+  #   container_name: k6-influxdb
+  #   ports:
+  #     - "8086:8086"
+  #   environment:
+  #     - DOCKER_INFLUXDB_INIT_MODE=setup
+  #     - DOCKER_INFLUXDB_INIT_USERNAME=admin
+  #     - DOCKER_INFLUXDB_INIT_PASSWORD=admin123
+  #     - DOCKER_INFLUXDB_INIT_ORG=k6org
+  #     - DOCKER_INFLUXDB_INIT_BUCKET=k6
+  #     - DOCKER_INFLUXDB_INIT_RETENTION=1w
+  #     - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=myk6token
+  #   volumes:
+  #     - influxdb-data:/var/lib/influxdb2
+  
+
+  grafana:
+    image: grafana/grafana:10.4.5
+    container_name: k6-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - influxdb
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+
+
+volumes:
+  influxdb-data:
+  grafana-data:

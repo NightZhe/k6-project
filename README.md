@@ -143,13 +143,7 @@ BASE_URL=https://test.k6.io \
 
 ---
 
-## 7. 進階功能
-
-若你想使用 InfluxDB v2 或 Prometheus，也可分別改用 `--out influxdbv2=...` 或 `--out experimental-prometheus-rw=...`，對應的 Grafana DataSource 也需調整。
-
----
-
-## 8. 小提示
+## 7. 小提示
 
 - 將 `BASE_URL` 指向你本機服務（例如 `http://localhost:3000`）即可針對本機進行壓測。
 - 使用 `group()` 將測試邏輯分組，方便在 Grafana 中查看分組指標。

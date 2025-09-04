@@ -147,6 +147,7 @@ BASE_URL=https://test.k6.io \
 
 - 將 `BASE_URL` 指向你本機服務（例如 `http://localhost:3000`）即可針對本機進行壓測。
 - 使用 `group()` 將測試邏輯分組，方便在 Grafana 中查看分組指標。
+- gafana 下載deshbord 模板 ID 14801。  https://grafana.com/grafana/dashboards/14801-k6-dashboard/  
 
 ```bash
 BASE_URL=https://test.k6.io \
